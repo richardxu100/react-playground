@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
 import ImageComponent from './ImageComponent';
+
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,14 @@ class App extends Component {
       text: '',
       todos: [],
     };
+  }
+
+  componentDidMount = () => {
+    axios.get('http:localhost:3001/todos')
+      // .then(res => res.json())
+      .then((data) => {
+      console.log('data: ', data);
+    }).catch((err) => console.log(err))
   }
 
   handleChange = (e) => {
