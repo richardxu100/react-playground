@@ -98,19 +98,6 @@ module.exports = {
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
     ],
   },
-  // devServer: {
-  //   historyApiFallback: true,
-  //   noInfo: true,
-  //   proxy: {
-  //     '/users': {
-  //       target: 'http://localhost:3001/todos',
-  //       changeOrigin: true,
-  //       pathRewrite: {
-  //         '^/todos': ''
-  //       },
-  //     },
-  //   },
-  // },
   module: {
     strictExportPresence: true,
     rules: [

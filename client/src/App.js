@@ -3,8 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import ImageComponent from './ImageComponent';
 
-import axios from 'axios';
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,11 +14,11 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    axios.get('/todos')
-      // .then(res => res.json())
+    fetch('/todos')
+      .then(res => res.json())
       .then((data) => {
-      console.log('data: ', data);
-    }).catch((err) => console.log(err))
+        console.log('data: ', data);
+      }).catch((err) => console.log(err))
   }
 
   handleChange = (e) => {
