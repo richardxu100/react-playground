@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import ImageComponent from './ImageComponent';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,16 @@ class App extends Component {
     this.setState({ todos: updatedTodos });
   } 
 
+  renderTodos() {
+    return this.state.todos.map((todo) => {
+      return <li 
+        onClick={() => this.deleteTodo(todo.id)} 
+        key={todo.id}>
+        {todo.text}
+      </li>
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -51,14 +63,10 @@ class App extends Component {
           onKeyPress={this.handleKeyPress} 
           onChange={this.handleChange}/>
         <ul>
-          {this.state.todos.map((todo) => {
-            return <li 
-              onClick={() => this.deleteTodo(todo.id)} 
-              key={todo.id}>
-              {todo.text}
-            </li>
-          })}
+          {this.renderTodos()}
         </ul>
+
+        <ImageComponent />
       </div>
     );
   }
