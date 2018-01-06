@@ -3,57 +3,72 @@ import logo from './logo.svg';
 import './App.css';
 import ImageComponent from './ImageComponent';
 
+import axios from 'axios';
+
 class App extends Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
       text: '',
-      todos: [],
+      todos: []
     };
   }
 
   componentDidMount = () => {
     fetch('/todos')
       .then(res => res.json())
-      .then((data) => {
-        console.log('data: ', data);
-      }).catch((err) => console.log(err))
-  }
+      .then(todos => {
+        this.setState({ todos });
+      })
+      .catch(err => console.log(err));
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
-      text: e.target.value,
+      text: e.target.value
     });
-  }
+  };
 
-  handleKeyPress = (e) => {
+  handleKeyPress = e => {
     if (e.key === 'Enter' && this.state.text !== '') {
       const updatedTodos = this.state.todos;
-      updatedTodos.push({
+      const newTodo = {
         text: this.state.text,
-        id: Date.now(),
-      });
+        id: Date.now()
+      };
+      updatedTodos.push(newTodo);
       this.setState({
         todos: updatedTodos,
-        text: '',
+        text: ''
+      });
+
+      axios.post('/todos', {
+        body: { newTodo }
       });
     }
-  }
+  };
 
-  deleteTodo = (id) => {
+  deleteTodo = id => {
     let updatedTodos = this.state.todos;
     updatedTodos = updatedTodos.filter(todo => todo.id !== id);
     this.setState({ todos: updatedTodos });
-  } 
+
+    axios
+      .delete('/todos', {
+        data: { id }
+      })
+      .then(res => console.log('res: ', res))
+      .catch(err => console.log('err: ', err));
+  };
 
   renderTodos() {
-    return this.state.todos.map((todo) => {
-      return <li 
-        onClick={() => this.deleteTodo(todo.id)} 
-        key={todo.id}>
-        {todo.text}
-      </li>
+    return this.state.todos.map(todo => {
+      return (
+        <li onClick={() => this.deleteTodo(todo.id)} key={todo.id}>
+          {todo.text}
+        </li>
+      );
     });
   }
 
@@ -64,14 +79,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Todo App</h1>
         </header>
-        <input 
-          type="text" 
+        <input
+          type="text"
           value={this.state.text}
-          onKeyPress={this.handleKeyPress} 
-          onChange={this.handleChange}/>
-        <ul>
-          {this.renderTodos()}
-        </ul>
+          onKeyPress={this.handleKeyPress}
+          onChange={this.handleChange}
+        />
+        <ul>{this.renderTodos()}</ul>
 
         <ImageComponent />
       </div>
