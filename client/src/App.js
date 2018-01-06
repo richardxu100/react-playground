@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    axios.get('http:localhost:3001/todos')
+    axios.get('/todos')
       // .then(res => res.json())
       .then((data) => {
       console.log('data: ', data);
