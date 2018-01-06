@@ -92,6 +92,7 @@
   },
   "proxy": "http://localhost:3001",
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "semi": false
   }
 }

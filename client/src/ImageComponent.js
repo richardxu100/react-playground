@@ -12,7 +12,7 @@ export default class ImageComponent extends PureComponent {
   componentDidMount = () => {
     setInterval(() => {
       this.setState({
-        time: this.state.time + 1,
+        time: this.state.time + 1
       });
     }, 5000);
   };
@@ -20,7 +20,7 @@ export default class ImageComponent extends PureComponent {
   render() {
     return (
       <div>
-        {/*<h3>The time: { this.state.time }</h3>*/}
+        <h3>The time: {this.state.time}</h3>
         <img
           src="https://us-east-1.tchyn.io/snopes-production/uploads/2016/08/panda.jpg"
           alt="Panda"

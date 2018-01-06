@@ -4,6 +4,7 @@
     "express": "^4.16.2"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "semi": false
   }
 }

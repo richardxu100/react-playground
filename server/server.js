@@ -1,17 +1,17 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+const express = require('express')
+const path = require('path')
+const bodyParser = require('body-parser')
 
-const port = process.env.PORT || 3001;
-const app = express();
+const port = process.env.PORT || 3001
+const app = express()
 
-const routes = require('./routes');
+const routes = require('./routes')
 
-app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, '../client/public')));
+app.use(bodyParser.json())
+app.use(express.static(path.resolve(__dirname, '../client/build')))
 
-routes(app);
+routes(app)
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+  console.log(`Listening on port ${port}`)
+})
