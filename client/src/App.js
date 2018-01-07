@@ -5,7 +5,7 @@ import ImageComponent from './ImageComponent'
 
 import axios from 'axios'
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,9 +16,9 @@ class App extends Component {
 
   componentDidMount = () => {
     axios
-      .post('/todos')
-      .then(todos => {
-        this.setState({ todos })
+      .get('/todos')
+      .then(res => {
+        this.setState({ todos: res.data })
       })
       .catch(err => console.log(err))
   }
@@ -42,9 +42,7 @@ class App extends Component {
         text: ''
       })
 
-      axios.post('/todos', {
-        body: { newTodo }
-      })
+      axios.post('/todos', { newTodo })
     }
   }
 
@@ -91,5 +89,3 @@ class App extends Component {
     )
   }
 }
-
-export default App

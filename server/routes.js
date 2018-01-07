@@ -23,7 +23,7 @@ module.exports = app => {
 
   app.post('/todos', (req, res) => {
     // console.log('what they sent me', req.body)
-    dummy_todos.push(req.body.body.newTodo)
+    dummy_todos.push(req.body.newTodo)
     res.status(200).send()
   })
 }
