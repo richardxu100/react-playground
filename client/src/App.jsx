@@ -41,7 +41,10 @@ export default class App extends Component {
         text: ''
       })
 
-      axios.post('/todos', { newTodo })
+      axios.post('/todos', { 
+        text: newTodo.text,
+        id: newTodo.id  
+      })
     }
   }
 
