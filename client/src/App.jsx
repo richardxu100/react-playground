@@ -31,12 +31,11 @@ export default class App extends Component {
 
   handleKeyPress = e => {
     if (e.key === 'Enter' && this.state.text !== '') {
-      const updatedTodos = this.state.todos
       const newTodo = {
         text: this.state.text,
         id: Date.now()
       }
-      updatedTodos.push(newTodo)
+      const updatedTodos = this.state.todos.concat(newTodo)
       this.setState({
         todos: updatedTodos,
         text: ''
@@ -47,8 +46,7 @@ export default class App extends Component {
   }
 
   deleteTodo = id => {
-    let updatedTodos = this.state.todos
-    updatedTodos = updatedTodos.filter(todo => todo.id !== id)
+    const updatedTodos = this.state.todos.filter(todo => todo.id !== id)
     this.setState({ todos: updatedTodos })
 
     axios

@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react';
 export default class ImageComponent extends PureComponent {
   constructor(props) {
     super(props);
-
     this.state = {
       time: 0
     };
